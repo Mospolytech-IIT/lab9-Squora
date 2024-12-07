@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Posts</title>
+</head>
+<body>
+    <h1>Posts</h1>
+    <form method="post" action="/posts/">
+        <input type="text" name="title" placeholder="Title" required>
+        <textarea name="content" placeholder="Content" required></textarea>
+        <input type="number" name="user_id" placeholder="User ID" required>
+        <button type="submit">Add Post</button>
+    </form>
+    <ul>
+        {% for post in posts %}
+        <li>
+            <strong>{{ post.title }}</strong>: {{ post.content }}
+            <form method="post" action="/posts/{{ post.id }}/delete" style="display:inline;">
+                <button type="submit">Delete</button>
+            </form>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
